@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scb-web
+  namespace: scb-web
+spec:
+  selector:
+    matchLabels:
+      app: scb-web-proxy
+  template:
+    metadata:
+      annotations:
+        ipman.dialo.ai/childName: scb-web
+        ipman.dialo.ai/ipmanName: scb-web
+        ipman.dialo.ai/poolName: proxy
+      labels:
+        app: scb-web-proxy
+    spec:
+      containers:
+        - image: nginx:stable
+          name: proxy
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: nginx-config
+      volumes:
+        - configMap:
+            name: nginx-config
+          name: config

@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  nginx.conf: |
+    events {}
+    http {
+        server {
+            listen 80;
+
+            location /prod {
+                proxy_pass https://10.93.74.5;
+            }
+            location /test {
+                proxy_pass https://10.93.74.95;
+            }
+            location /env35a {
+                proxy_pass https://10.93.74.7;
+            }
+            location /env27a {
+                proxy_pass https://10.93.74.97;
+            }
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: scb-web
