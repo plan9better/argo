@@ -82,11 +82,11 @@ in {
         containers.proxy = {
           image = image;
           volumeMounts = {
-            "/etc/nginx/nginx.conf".name = "nginx-config";
+            "/etc/nginx".name = "nginx-config";
           };
         };
         volumes = {
-          config = {
+          nginx-config = {
             configMap.name = "nginx-config";
           };
         };

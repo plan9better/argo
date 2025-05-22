@@ -20,9 +20,9 @@ spec:
         - image: nginx:stable
           name: proxy
           volumeMounts:
-            - mountPath: /etc/nginx/nginx.conf
+            - mountPath: /etc/nginx
               name: nginx-config
       volumes:
         - configMap:
             name: nginx-config
-          name: config
+          name: nginx-config
