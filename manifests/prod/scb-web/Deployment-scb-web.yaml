@@ -24,6 +24,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/nginx
               name: nginx-config
+      restartPolicy: Never
       volumes:
         - configMap:
             name: nginx-config
