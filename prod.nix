@@ -2,7 +2,7 @@
   nixidy = {
     target = {
       repository = "https://github.com/plan9better/argo";
-      branch = "nixidy";
+      branch = "master";
       rootPath = "./manifests/prod";
     };
     applicationImports = [
