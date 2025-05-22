@@ -11,4 +11,4 @@ spec:
   source:
     path: ./manifests/prod/scb-web
     repoURL: https://github.com/plan9better/argo
-    targetRevision: nixidy
+    targetRevision: master
