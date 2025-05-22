@@ -2,7 +2,7 @@ apiVersion: ipman.dialo.ai/v1
 kind: Ipman
 metadata:
   name: scb-web
-  namespace: scb-web
+  namespace: default
 spec:
   children:
     scb-web:
@@ -44,4 +44,4 @@ spec:
   secretRef:
     key: ike-scb-web
     name: ike-scb-web
-    namespace: scb-web
+    namespace: default
