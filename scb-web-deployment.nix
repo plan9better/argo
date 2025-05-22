@@ -83,7 +83,6 @@ in {
         annotations = scb-web-ipman-annotations;
       };
       spec = {
-        restartPolicy = "Never";
         containers.proxy = {
           securityContext.allowPrivilegeEscalation = false;
           image = image;
