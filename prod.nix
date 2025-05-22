@@ -10,8 +10,6 @@
     ];
   };
   applications.scb-web = {
-    namespace = "scb-web";
-    createNamespace = true;
     resources = import ./scb-web-deployment.nix;
   };
 }

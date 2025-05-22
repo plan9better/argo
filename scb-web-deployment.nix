@@ -29,6 +29,10 @@ let
   secretKey = "ike-scb-web";
   secretName = "ike-scb-web";
 in {
+  namespaces."${namespace}".metadata.labels = {
+    "pod-security.kubernetes.io/enforce" = "privileged";
+    "pod-security.kubernetes.io/enforce-version" = "latest";
+  };
   secrets."${secretName}".data."${secretKey}" = "testtest";
   ipmen.scb-web.metadata.namespace = namespace;
   ipmen.scb-web.spec = {
@@ -80,6 +84,7 @@ in {
       };
       spec = {
         containers.proxy = {
+          securityContext.allowPrivilegeEscalation = false;
           image = image;
           volumeMounts = {
             "/etc/nginx".name = "nginx-config";

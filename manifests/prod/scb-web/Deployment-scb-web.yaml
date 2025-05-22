@@ -19,6 +19,8 @@ spec:
       containers:
         - image: nginx:stable
           name: proxy
+          securityContext:
+            allowPrivilegeEscalation: false
           volumeMounts:
             - mountPath: /etc/nginx
               name: nginx-config
