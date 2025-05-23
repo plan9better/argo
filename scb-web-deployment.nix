@@ -1,44 +1,38 @@
 let
-  ipmanName = "scb-web";
+  scbIp = "193.22.252.93";
+  node = {
+    ip = "146.59.69.1";
+    name = "hgrai1-1";
+  };
+
+  ipmanName = "scb";
   proxyPoolName = "proxy";
-  childName = "scb-web";
+  childName = "scb";
   image = "caddy:2.10.0-alpine";
   deploymentLabels = {
-    "app" = "scb-web-proxy";
+    "app" = "scb-proxy";
   };
 
   pools = {
     "${proxyPoolName}" = [
-      "10.93.74.128/32"
       "10.93.74.129/32"
       "10.93.74.130/32"
+      "10.93.74.131/32"
     ];
-  };
-  scbIp = "13.51.6.188";
-  node = {
-    ip = "145.239.135.194";
-    name = "nixos";
   };
   namespace = "external-apps";
 
-  scb-web-ipman-annotations = {
+  scb-ipman-annotations = {
     "ipman.dialo.ai/childName" = childName;
     "ipman.dialo.ai/ipmanName" = ipmanName;
     "ipman.dialo.ai/poolName" = proxyPoolName;
   };
-  secretKey = "ike-scb-web";
-  secretName = "ike-scb-web";
+  secretKey = "scb";
+  secretName = "ipsec-psks";
 in {
-  namespaces.external-apps.metadata.labels = {
-    "pod-security.kubernetes.io/enforce" = "privileged";
-    "pod-security.kubernetes.io/enforce-version" = "latest";
-    "pod-security.kubernetes.io/warn" = "restricted";
-    "pod-security.kubernetes.io/warn-version" = "latest";
-  };
-  secrets."${secretName}".data."${secretKey}" = "dGVzdHRlc3QK";
-  ipmen.scb-web.metadata.namespace = namespace;
-  ipmen.scb-web.spec = {
-    name = "scb-web";
+  ipmen.scb.metadata.namespace = namespace;
+  ipmen.scb.spec = {
+    name = "scb";
     remoteAddr = scbIp;
     remoteId = scbIp;
     localAddr = node.ip;
@@ -60,7 +54,7 @@ in {
       fragmentation = "yes";
       encap = "yes";
     };
-    children.scb-web = {
+    children.scb = {
       extra = {
         start_action = "start";
         close_action = "none";
@@ -68,7 +62,7 @@ in {
         rekey_time = "1h";
         esp_proposals = "aes256-sha256-modp2048";
       };
-      name = "scb-web";
+      name = "scb";
       local_ips = ["10.93.74.128/25"];
       remote_ips = ["10.93.74.0/25"];
       xfrm_ip = "10.94.74.150/32";
@@ -77,12 +71,12 @@ in {
       ip_pools = pools;
     };
   };
-  deployments.scb-web.spec = {
+  deployments.scb.spec = {
     selector.matchLabels = deploymentLabels;
     template = {
       metadata = {
         labels = deploymentLabels;
-        annotations = scb-web-ipman-annotations;
+        annotations = scb-ipman-annotations;
       };
       spec = {
         containers = {

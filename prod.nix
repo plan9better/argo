@@ -11,7 +11,7 @@
   };
   applications.scb-web = {
     namespace = "external-apps";
-    resources = import ./scb-web-deployment.nix;
+    # resources = import ./scb-web-deployment.nix;
     imports = [(import ./ipman.nix)];
   };
 }
