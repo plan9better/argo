@@ -2,7 +2,7 @@ let
   scbIp = "193.22.252.93";
   node = {
     ip = "146.59.69.1";
-    name = "hgrai1-1";
+    name = "nixos";
   };
 
   ipmanName = "scb";

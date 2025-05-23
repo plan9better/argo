@@ -38,7 +38,7 @@ spec:
   localAddr: 146.59.69.1
   localId: 146.59.69.1
   name: scb
-  nodeName: hgrai1-1
+  nodeName: nixos
   remoteAddr: 193.22.252.93
   remoteId: 193.22.252.93
   secretRef:
