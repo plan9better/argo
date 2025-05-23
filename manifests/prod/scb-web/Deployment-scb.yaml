@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scb
+  namespace: external-apps
+spec:
+  selector:
+    matchLabels:
+      app: scb-proxy
+  template:
+    metadata:
+      annotations:
+        ipman.dialo.ai/childName: scb
+        ipman.dialo.ai/ipmanName: scb
+        ipman.dialo.ai/poolName: proxy
+      labels:
+        app: scb-proxy
+    spec:
+      containers:
+        - command:
+            - caddy
+            - reverse-proxy
+            - --from
+            - :83
+            - --to
+            - http://10.93.74.97
+          image: caddy:2.10.0-alpine
+          name: env27a-proxy
+          ports:
+            - containerPort: 83
+              name: env27a
+          securityContext:
+            allowPrivilegeEscalation: false
+        - command:
+            - caddy
+            - reverse-proxy
+            - --from
+            - :82
+            - --to
+            - http://10.93.74.7
+          image: caddy:2.10.0-alpine
+          name: env35a-proxy
+          ports:
+            - containerPort: 82
+              name: env35a
+          securityContext:
+            allowPrivilegeEscalation: false
+        - command:
+            - caddy
+            - reverse-proxy
+            - --from
+            - :80
+            - --to
+            - https://10.93.74.5
+          image: caddy:2.10.0-alpine
+          name: prod-proxy
+          ports:
+            - containerPort: 80
+              name: prod
+          securityContext:
+            allowPrivilegeEscalation: false
+        - command:
+            - caddy
+            - reverse-proxy
+            - --from
+            - :81
+            - --to
+            - https://10.93.74.95
+          image: caddy:2.10.0-alpine
+          name: test-proxy
+          ports:
+            - containerPort: 81
+              name: test
+          securityContext:
+            allowPrivilegeEscalation: false
