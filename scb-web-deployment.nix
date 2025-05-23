@@ -33,7 +33,7 @@ in {
     "pod-security.kubernetes.io/enforce" = "privileged";
     "pod-security.kubernetes.io/enforce-version" = "latest";
   };
-  secrets."${secretName}".data."${secretKey}" = "testtest";
+  secrets."${secretName}".data."${secretKey}" = "dGVzdHRlc3QK";
   ipmen.scb-web.metadata.namespace = namespace;
   ipmen.scb-web.spec = {
     name = "scb-web";
