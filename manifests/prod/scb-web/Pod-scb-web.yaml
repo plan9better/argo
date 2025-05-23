@@ -1,6 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  annotations:
+    ipman.dialo.ai/childName: scb-web
+    ipman.dialo.ai/ipmanName: scb-web
+    ipman.dialo.ai/poolName: proxy
   name: scb-web
   namespace: scb-web
 spec:

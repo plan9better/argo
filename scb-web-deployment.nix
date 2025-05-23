@@ -102,7 +102,10 @@ in {
   #   };
   # };
   pods.scb-web = {
-    metadata.namespace = "scb-web";
+    metadata = {
+      namespace = "scb-web";
+      annotations = scb-web-ipman-annotations;
+    };
     spec = {
       restartPolicy = "Never";
       containers.proxy = {
