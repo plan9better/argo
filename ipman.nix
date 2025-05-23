@@ -1,5 +1,5 @@
 {lib, ...}: {
-  helm.releases.ipmanv002 = {
+  helm.releases.ipman = {
     chart = lib.helm.downloadHelmChart {
       repo = "https://dialohq.github.io/ipman";
       chart = "ipman";

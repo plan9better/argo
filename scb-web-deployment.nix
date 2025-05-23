@@ -2,7 +2,7 @@ let
   ipmanName = "scb-web";
   proxyPoolName = "proxy";
   childName = "scb-web";
-  image = "nginx:stable";
+  image = "caddy:2.10.0-alpine";
   deploymentLabels = {
     "app" = "scb-web-proxy";
   };
@@ -83,45 +83,33 @@ in {
         annotations = scb-web-ipman-annotations;
       };
       spec = {
-        containers.proxy = {
-          securityContext = {
-            allowPrivilegeEscalation = false;
-            capabilities.add = ["NET_ADMIN" "NET_RAW"];
+        containers = {
+          prodProxy = {
+            securityContext.allowPrivilegeEscalation = false;
+            image = image;
+            ports.prod = "80";
+            command = ["caddy" "reverse-proxy" "--from" ":80" "--to" "https://10.93.74.5"];
           };
-          image = image;
-          volumeMounts = {
-            "/etc/nginx".name = "nginx-config";
+          testProxy = {
+            securityContext.allowPrivilegeEscalation = false;
+            image = image;
+            ports.test = "81";
+            command = ["caddy" "reverse-proxy" "--from" ":81" "--to" "https://10.93.74.95"];
           };
-        };
-        volumes = {
-          nginx-config = {
-            configMap.name = "nginx-config";
+          env35a = {
+            securityContext.allowPrivilegeEscalation = false;
+            image = image;
+            ports.env35a = "82";
+            command = ["caddy" "reverse-proxy" "--from" ":82" "--to" "http://10.93.74.7"];
+          };
+          env27a = {
+            securityContext.allowPrivilegeEscalation = false;
+            ports.env27a = "83";
+            image = image;
+            command = ["caddy" "reverse-proxy" "--from" ":83" "--to" "http://10.93.74.97"];
           };
         };
       };
     };
-  };
-  configMaps = {
-    nginx-config.data."nginx.conf" = ''
-      events {}
-      http {
-          server {
-              listen 80;
-
-              location /prod {
-                  proxy_pass https://10.93.74.5;
-              }
-              location /test {
-                  proxy_pass https://10.93.74.95;
-              }
-              location /env35a {
-                  proxy_pass https://10.93.74.7;
-              }
-              location /env27a {
-                  proxy_pass https://10.93.74.97;
-              }
-          }
-      }
-    '';
   };
 }
