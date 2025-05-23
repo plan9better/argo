@@ -27,8 +27,8 @@ let
     "ipman.dialo.ai/ipmanName" = ipmanName;
     "ipman.dialo.ai/poolName" = proxyPoolName;
   };
-  secretKey = "scb";
-  secretName = "ipsec-psks";
+  secretKey = "ike-scb-web";
+  secretName = "ike-scb-web";
 in {
   ipmen.scb.metadata.namespace = namespace;
   ipmen.scb.spec = {

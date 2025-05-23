@@ -42,6 +42,6 @@ spec:
   remoteAddr: 193.22.252.93
   remoteId: 193.22.252.93
   secretRef:
-    key: scb
-    name: ipsec-psks
+    key: ike-scb-web
+    name: ike-scb-web
     namespace: external-apps
