@@ -86,7 +86,7 @@ in {
       };
       spec = {
         containers = {
-          prodProxy = {
+          prod-proxy = {
             securityContext.allowPrivilegeEscalation = false;
             image = image;
             ports."prod" = {
@@ -95,7 +95,7 @@ in {
             };
             command = ["caddy" "reverse-proxy" "--from" ":80" "--to" "https://10.93.74.5"];
           };
-          testProxy = {
+          test-proxy = {
             securityContext.allowPrivilegeEscalation = false;
             image = image;
             ports."test" = {
@@ -104,7 +104,7 @@ in {
             };
             command = ["caddy" "reverse-proxy" "--from" ":81" "--to" "https://10.93.74.95"];
           };
-          env35aProxy = {
+          env35a-proxy = {
             securityContext.allowPrivilegeEscalation = false;
             image = image;
             ports."env35a" = {
@@ -113,7 +113,7 @@ in {
             };
             command = ["caddy" "reverse-proxy" "--from" ":82" "--to" "http://10.93.74.7"];
           };
-          env27aProxy = {
+          env27a-proxy = {
             securityContext.allowPrivilegeEscalation = false;
             ports."env27a" = {
               name = "env27a";

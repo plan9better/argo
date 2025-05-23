@@ -25,7 +25,7 @@ spec:
             - --to
             - http://10.93.74.97
           image: caddy:2.10.0-alpine
-          name: env27aProxy
+          name: env27a-proxy
           ports:
             - containerPort: 83
               name: env27a
@@ -39,7 +39,7 @@ spec:
             - --to
             - http://10.93.74.7
           image: caddy:2.10.0-alpine
-          name: env35aProxy
+          name: env35a-proxy
           ports:
             - containerPort: 82
               name: env35a
@@ -53,7 +53,7 @@ spec:
             - --to
             - https://10.93.74.5
           image: caddy:2.10.0-alpine
-          name: prodProxy
+          name: prod-proxy
           ports:
             - containerPort: 80
               name: prod
@@ -67,7 +67,7 @@ spec:
             - --to
             - https://10.93.74.95
           image: caddy:2.10.0-alpine
-          name: testProxy
+          name: test-proxy
           ports:
             - containerPort: 81
               name: test
