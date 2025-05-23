@@ -19,7 +19,7 @@ let
     ip = "145.239.135.194";
     name = "nixos";
   };
-  namespace = "scb-web";
+  namespace = "external-apps";
 
   scb-web-ipman-annotations = {
     "ipman.dialo.ai/childName" = childName;
@@ -29,9 +29,11 @@ let
   secretKey = "ike-scb-web";
   secretName = "ike-scb-web";
 in {
-  namespaces."${namespace}".metadata.labels = {
+  namespaces.external-apps.metadata.labels = {
     "pod-security.kubernetes.io/enforce" = "privileged";
     "pod-security.kubernetes.io/enforce-version" = "latest";
+    "pod-security.kubernetes.io/warn" = "restricted";
+    "pod-security.kubernetes.io/warn-version" = "latest";
   };
   secrets."${secretName}".data."${secretKey}" = "dGVzdHRlc3QK";
   ipmen.scb-web.metadata.namespace = namespace;
@@ -87,24 +89,36 @@ in {
           prodProxy = {
             securityContext.allowPrivilegeEscalation = false;
             image = image;
-            ports.prod = "80";
+            ports."prod" = {
+              name = "prod";
+              containerPort = 80;
+            };
             command = ["caddy" "reverse-proxy" "--from" ":80" "--to" "https://10.93.74.5"];
           };
           testProxy = {
             securityContext.allowPrivilegeEscalation = false;
             image = image;
-            ports.test = "81";
+            ports."test" = {
+              name = "test";
+              containerPort = 81;
+            };
             command = ["caddy" "reverse-proxy" "--from" ":81" "--to" "https://10.93.74.95"];
           };
-          env35a = {
+          env35aProxy = {
             securityContext.allowPrivilegeEscalation = false;
             image = image;
-            ports.env35a = "82";
+            ports."env35a" = {
+              name = "env35a";
+              containerPort = 82;
+            };
             command = ["caddy" "reverse-proxy" "--from" ":82" "--to" "http://10.93.74.7"];
           };
-          env27a = {
+          env27aProxy = {
             securityContext.allowPrivilegeEscalation = false;
-            ports.env27a = "83";
+            ports."env27a" = {
+              name = "env27a";
+              containerPort = 83;
+            };
             image = image;
             command = ["caddy" "reverse-proxy" "--from" ":83" "--to" "http://10.93.74.97"];
           };
