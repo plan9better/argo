@@ -35,12 +35,12 @@ spec:
     proposals: aes256-sha256-modp2048
     rekey_time: 86400s
     version: "2"
-  localAddr: 146.59.69.1
-  localId: 146.59.69.1
+  localAddr: 145.239.135.194
+  localId: 145.239.135.194
   name: scb-web
   nodeName: nixos
-  remoteAddr: 193.22.252.93
-  remoteId: 193.22.252.93
+  remoteAddr: 13.51.6.188
+  remoteId: 13.51.6.188
   secretRef:
     key: ike-scb-web
     name: ike-scb-web
