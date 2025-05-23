@@ -12,5 +12,6 @@
   applications.scb-web = {
     namespace = "scb-web";
     resources = import ./scb-web-deployment.nix;
+    imports = [(import ./ipman.nix)];
   };
 }
