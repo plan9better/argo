@@ -19,7 +19,7 @@ let
     ip = "146.59.69.1";
     name = "nixos";
   };
-  namespace = "default";
+  namespace = "scb-web";
 
   scb-web-ipman-annotations = {
     "ipman.dialo.ai/childName" = childName;

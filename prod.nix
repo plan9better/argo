@@ -10,7 +10,7 @@
     ];
   };
   applications.scb-web = {
-    namespace = "default";
+    namespace = "scb-web";
     resources = import ./scb-web-deployment.nix;
   };
 }
