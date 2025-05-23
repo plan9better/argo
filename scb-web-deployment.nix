@@ -75,25 +75,49 @@ in {
       ip_pools = pools;
     };
   };
-  deployments.scb-web.spec = {
-    selector.matchLabels = deploymentLabels;
-    template = {
-      metadata = {
-        labels = deploymentLabels;
-        annotations = scb-web-ipman-annotations;
-      };
-      spec = {
-        containers.proxy = {
-          securityContext.allowPrivilegeEscalation = false;
-          image = image;
-          volumeMounts = {
-            "/etc/nginx".name = "nginx-config";
-          };
+  # deployments.scb-web.spec = {
+  #   selector.matchLabels = deploymentLabels;
+  #   template = {
+  #     metadata = {
+  #       labels = deploymentLabels;
+  #       annotations = scb-web-ipman-annotations;
+  #     };
+  #     spec = {
+  #       containers.proxy = {
+  #         securityContext = {
+  #           allowPrivilegeEscalation = false;
+  #           capabilities.add = ["NET_ADMIN" "NET_RAW"];
+  #         };
+  #         image = image;
+  #         volumeMounts = {
+  #           "/etc/nginx".name = "nginx-config";
+  #         };
+  #       };
+  #       volumes = {
+  #         nginx-config = {
+  #           configMap.name = "nginx-config";
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
+  pods.scb-web = {
+    metadata.namespace = "scb-web";
+    spec = {
+      restartPolicy = "Never";
+      containers.proxy = {
+        securityContext = {
+          allowPrivilegeEscalation = false;
+          capabilities.add = ["NET_ADMIN" "NET_RAW"];
         };
-        volumes = {
-          nginx-config = {
-            configMap.name = "nginx-config";
-          };
+        image = image;
+        volumeMounts = {
+          "/etc/nginx".name = "nginx-config";
+        };
+      };
+      volumes = {
+        nginx-config = {
+          configMap.name = "nginx-config";
         };
       };
     };
