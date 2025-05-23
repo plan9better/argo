@@ -71,53 +71,53 @@ in {
       ip_pools = pools;
     };
   };
-  deployments.scb.spec = {
-    selector.matchLabels = deploymentLabels;
-    template = {
-      metadata = {
-        labels = deploymentLabels;
-        annotations = scb-ipman-annotations;
-      };
-      spec = {
-        containers = {
-          prod-proxy = {
-            securityContext.allowPrivilegeEscalation = false;
-            image = image;
-            ports."prod" = {
-              name = "prod";
-              containerPort = 80;
-            };
-            command = ["caddy" "reverse-proxy" "--from" ":80" "--to" "https://10.93.74.5"];
-          };
-          test-proxy = {
-            securityContext.allowPrivilegeEscalation = false;
-            image = image;
-            ports."test" = {
-              name = "test";
-              containerPort = 81;
-            };
-            command = ["caddy" "reverse-proxy" "--from" ":81" "--to" "https://10.93.74.95"];
-          };
-          env35a-proxy = {
-            securityContext.allowPrivilegeEscalation = false;
-            image = image;
-            ports."env35a" = {
-              name = "env35a";
-              containerPort = 82;
-            };
-            command = ["caddy" "reverse-proxy" "--from" ":82" "--to" "http://10.93.74.7"];
-          };
-          env27a-proxy = {
-            securityContext.allowPrivilegeEscalation = false;
-            ports."env27a" = {
-              name = "env27a";
-              containerPort = 83;
-            };
-            image = image;
-            command = ["caddy" "reverse-proxy" "--from" ":83" "--to" "http://10.93.74.97"];
-          };
-        };
-      };
-    };
-  };
+  # deployments.scb.spec = {
+  #   selector.matchLabels = deploymentLabels;
+  #   template = {
+  #     metadata = {
+  #       labels = deploymentLabels;
+  #       annotations = scb-ipman-annotations;
+  #     };
+  #     spec = {
+  #       containers = {
+  #         prod-proxy = {
+  #           securityContext.allowPrivilegeEscalation = false;
+  #           image = image;
+  #           ports."prod" = {
+  #             name = "prod";
+  #             containerPort = 80;
+  #           };
+  #           command = ["caddy" "reverse-proxy" "--from" ":80" "--to" "https://10.93.74.5"];
+  #         };
+  #         test-proxy = {
+  #           securityContext.allowPrivilegeEscalation = false;
+  #           image = image;
+  #           ports."test" = {
+  #             name = "test";
+  #             containerPort = 81;
+  #           };
+  #           command = ["caddy" "reverse-proxy" "--from" ":81" "--to" "https://10.93.74.95"];
+  #         };
+  #         env35a-proxy = {
+  #           securityContext.allowPrivilegeEscalation = false;
+  #           image = image;
+  #           ports."env35a" = {
+  #             name = "env35a";
+  #             containerPort = 82;
+  #           };
+  #           command = ["caddy" "reverse-proxy" "--from" ":82" "--to" "http://10.93.74.7"];
+  #         };
+  #         env27a-proxy = {
+  #           securityContext.allowPrivilegeEscalation = false;
+  #           ports."env27a" = {
+  #             name = "env27a";
+  #             containerPort = 83;
+  #           };
+  #           image = image;
+  #           command = ["caddy" "reverse-proxy" "--from" ":83" "--to" "http://10.93.74.97"];
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
 }

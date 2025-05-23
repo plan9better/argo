@@ -1,0 +1,47 @@
+apiVersion: ipman.dialo.ai/v1
+kind: Ipman
+metadata:
+  name: scb
+  namespace: external-apps
+spec:
+  children:
+    scb:
+      extra:
+        close_action: none
+        dpd_action: restart
+        esp_proposals: aes256-sha256-modp2048
+        rekey_time: 1h
+        start_action: start
+      if_id: 101
+      ip_pools:
+        proxy:
+          - 10.93.74.129/32
+          - 10.93.74.130/32
+          - 10.93.74.131/32
+      local_ips:
+        - 10.93.74.128/25
+      name: scb
+      remote_ips:
+        - 10.93.74.0/25
+      vxlan_ip: 10.94.74.151/32
+      xfrm_ip: 10.94.74.150/32
+  extra:
+    dpd_delay: 30s
+    dpd_timeout: 150s
+    encap: "yes"
+    fragmentation: "yes"
+    mobike: "no"
+    over_time: 180s
+    proposals: aes256-sha256-modp2048
+    rekey_time: 86400s
+    version: "2"
+  localAddr: 146.59.69.1
+  localId: 146.59.69.1
+  name: scb
+  nodeName: hgrai1-1
+  remoteAddr: 193.22.252.93
+  remoteId: 193.22.252.93
+  secretRef:
+    key: scb
+    name: ipsec-psks
+    namespace: external-apps
