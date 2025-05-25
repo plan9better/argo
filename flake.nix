@@ -32,7 +32,7 @@
               owner = "dialohq";
               repo = "ipman";
               rev = "master";
-              hash = "sha256-l9KMicNOclria41Gh3KiTnx9HLZaHlu+i+UJSRPgoPQ=";
+              hash = "sha256-LtXy2pvFkGNMggE2eiwV+ofk+1Xxsmx012Zf11jwtSY=";
             };
             crds = [
               "ipman/templates/ipman-crd.yaml"

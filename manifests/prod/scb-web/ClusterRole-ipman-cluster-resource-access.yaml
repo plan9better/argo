@@ -35,7 +35,7 @@ rules:
   - apiGroups:
       - ipman.dialo.ai
     resources:
-      - ipmen
+      - ipsecconnections
     verbs:
       - get
       - list
@@ -45,7 +45,7 @@ rules:
   - apiGroups:
       - ipman.dialo.ai
     resources:
-      - ipmen/status
+      - ipsecconnections/status
     verbs:
       - get
       - update

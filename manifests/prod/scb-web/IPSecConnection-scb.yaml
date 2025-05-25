@@ -1,5 +1,5 @@
 apiVersion: ipman.dialo.ai/v1
-kind: Ipman
+kind: IPSecConnection
 metadata:
   name: scb
   namespace: external-apps

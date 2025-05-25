@@ -37,8 +37,8 @@ in {
     "pod-security.kubernetes.io/warn-version" = "latest";
   };
   secrets.${secretName}.data.${secretKey} = "dGVzdHRlc3QK";
-  ipmen.scb.metadata.namespace = namespace;
-  ipmen.scb.spec = {
+  iPSecConnections.scb.metadata.namespace = namespace;
+  iPSecConnections.scb.spec = {
     name = "scb";
     remoteAddr = scbIp;
     remoteId = scbIp;

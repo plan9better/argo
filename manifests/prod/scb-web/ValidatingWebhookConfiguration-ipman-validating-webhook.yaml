@@ -34,5 +34,5 @@ webhooks:
           - DELETE
           - UPDATE
         resources:
-          - ipmen
+          - ipsecconnections
     sideEffects: None

@@ -5,6 +5,7 @@
       branch = "master";
       rootPath = "./manifests/prod";
     };
+    # change?
     applicationImports = [
       ./generated/ipman.nix
     ];

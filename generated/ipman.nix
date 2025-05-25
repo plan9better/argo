@@ -158,7 +158,7 @@ with lib; let
   );
 
   definitions = {
-    "ipman.dialo.ai.v1.Ipman" = {
+    "ipman.dialo.ai.v1.IPSecConnection" = {
       options = {
         "apiVersion" = mkOption {
           description = "";
@@ -174,11 +174,11 @@ with lib; let
         };
         "spec" = mkOption {
           description = "";
-          type = types.nullOr (submoduleOf "ipman.dialo.ai.v1.IpmanSpec");
+          type = types.nullOr (submoduleOf "ipman.dialo.ai.v1.IPSecConnectionSpec");
         };
         "status" = mkOption {
           description = "";
-          type = types.nullOr (submoduleOf "ipman.dialo.ai.v1.IpmanStatus");
+          type = types.nullOr (submoduleOf "ipman.dialo.ai.v1.IPSecConnectionStatus");
         };
       };
 
@@ -190,7 +190,7 @@ with lib; let
         "status" = mkOverride 1002 null;
       };
     };
-    "ipman.dialo.ai.v1.IpmanSpec" = {
+    "ipman.dialo.ai.v1.IPSecConnectionSpec" = {
       options = {
         "children" = mkOption {
           description = "";
@@ -226,7 +226,7 @@ with lib; let
         };
         "secretRef" = mkOption {
           description = "";
-          type = submoduleOf "ipman.dialo.ai.v1.IpmanSpecSecretRef";
+          type = submoduleOf "ipman.dialo.ai.v1.IPSecConnectionSpecSecretRef";
         };
       };
 
@@ -234,7 +234,7 @@ with lib; let
         "extra" = mkOverride 1002 null;
       };
     };
-    "ipman.dialo.ai.v1.IpmanSpecSecretRef" = {
+    "ipman.dialo.ai.v1.IPSecConnectionSpecSecretRef" = {
       options = {
         "key" = mkOption {
           description = "";
@@ -252,7 +252,7 @@ with lib; let
 
       config = {};
     };
-    "ipman.dialo.ai.v1.IpmanStatus" = {
+    "ipman.dialo.ai.v1.IPSecConnectionStatus" = {
       options = {
         "charonProxyIp" = mkOption {
           description = "";
@@ -285,16 +285,16 @@ in {
   options = {
     resources =
       {
-        "ipman.dialo.ai"."v1"."Ipman" = mkOption {
+        "ipman.dialo.ai"."v1"."IPSecConnection" = mkOption {
           description = "";
-          type = types.attrsOf (submoduleForDefinition "ipman.dialo.ai.v1.Ipman" "ipmen" "Ipman" "ipman.dialo.ai" "v1");
+          type = types.attrsOf (submoduleForDefinition "ipman.dialo.ai.v1.IPSecConnection" "ipsecconnections" "IPSecConnection" "ipman.dialo.ai" "v1");
           default = {};
         };
       }
       // {
-        "ipmen" = mkOption {
+        "iPSecConnections" = mkOption {
           description = "";
-          type = types.attrsOf (submoduleForDefinition "ipman.dialo.ai.v1.Ipman" "ipmen" "Ipman" "ipman.dialo.ai" "v1");
+          type = types.attrsOf (submoduleForDefinition "ipman.dialo.ai.v1.IPSecConnection" "ipsecconnections" "IPSecConnection" "ipman.dialo.ai" "v1");
           default = {};
         };
       };
@@ -307,17 +307,17 @@ in {
     # register resource types
     types = [
       {
-        name = "ipmen";
+        name = "ipsecconnections";
         group = "ipman.dialo.ai";
         version = "v1";
-        kind = "Ipman";
-        attrName = "ipmen";
+        kind = "IPSecConnection";
+        attrName = "iPSecConnections";
       }
     ];
 
     resources = {
-      "ipman.dialo.ai"."v1"."Ipman" =
-        mkAliasDefinitions options.resources."ipmen";
+      "ipman.dialo.ai"."v1"."IPSecConnection" =
+        mkAliasDefinitions options.resources."iPSecConnections";
     };
 
     defaults = [];
