@@ -36,6 +36,7 @@ in {
     "pod-security.kubernetes.io/warn" = "restricted";
     "pod-security.kubernetes.io/warn-version" = "latest";
   };
+  secrets.${secretName}.data.${secretKey} = "dGVzdHRlc3QK";
   ipmen.scb.metadata.namespace = namespace;
   ipmen.scb.spec = {
     name = "scb";

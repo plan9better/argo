@@ -1,0 +1,35 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  annotations:
+    cert-manager.io/inject-ca-from: ipman-system/ipman-webhook-certificate
+  name: ipman-mutating-webhook
+webhooks:
+  - admissionReviewVersions:
+      - v1
+    clientConfig:
+      service:
+        name: ipman-webhook-service
+        namespace: ipman-system
+        path: /mutating
+        port: 443
+    failurePolicy: Fail
+    name: webhook.ipman.dialo.ai
+    namespaceSelector:
+      matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: NotIn
+          values:
+            - ipman-system
+    objectSelector: {}
+    rules:
+      - apiGroups:
+          - ""
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+        resources:
+          - pods
+    sideEffects: NoneOnDryRun
+    timeoutSeconds: 30
