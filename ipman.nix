@@ -3,8 +3,8 @@
     chart = lib.helm.downloadHelmChart {
       repo = "https://dialohq.github.io/ipman";
       chart = "ipman";
-      version = "0.0.6-1";
-      chartHash = "sha256-DMuSFkVf7LL/9f/eF8P6JStJZu385dQsLRW3esqWqjQ=";
+      version = "0.0.7";
+      chartHash = "sha256-vUdhWq86YoouJyYYsYpw5vbPvm7ALzCYV2uT/5l22l0=";
     };
   };
 }

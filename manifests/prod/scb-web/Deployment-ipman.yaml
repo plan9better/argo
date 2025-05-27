@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: ipman
     app.kubernetes.io/version: 1.16.0
     control-plane: controller-manager
-    helm.sh/chart: ipman-0.0.6-1
+    helm.sh/chart: ipman-0.0.7
   name: ipman
   namespace: ipman-system
 spec:
@@ -25,25 +25,26 @@ spec:
         app.kubernetes.io/name: ipman
         app.kubernetes.io/version: 1.16.0
         control-plane: controller-manager
-        helm.sh/chart: ipman-0.0.6-1
+        helm.sh/chart: ipman-0.0.7
     spec:
       containers:
         - env:
             - name: NAMESPACE_NAME
               value: ipman-system
             - name: XFRMINION_IMAGE
-              value: plan9better/xfrminion:0.0.6-1
+              value: plan9better/xfrminion:0.0.7
             - name: VXLANDLORD_IMAGE
-              value: plan9better/vxlandlord:0.0.6-1
+              value: plan9better/vxlandlord:0.0.7
             - name: RESTCTL_IMAGE
-              value: plan9better/restctl:0.0.6-1
+              value: plan9better/restctl:0.0.7
             - name: CHARONDAEMON_IMAGE
-              value: plan9better/strongswan-charon:0.0.6-1
+              value: plan9better/strongswan-charon:0.0.7
             - name: PROXY_SOCKET_PATH
               value: /var/run/ipman
             - name: HOST_SOCKETS_PATH
               value: /var/run/ipman
-          image: plan9better/operator:0.0.6-1
+          image: plan9better/operator:0.0.7
+          imagePullPolicy: Always
           name: ipman
           securityContext:
             allowPrivilegeEscalation: false
