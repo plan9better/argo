@@ -38,7 +38,7 @@ spec:
   localAddr: 145.239.135.194
   localId: 145.239.135.194
   name: scb
-  nodeName: nixos
+  nodeName: localcluster
   remoteAddr: 13.51.6.188
   remoteId: 13.51.6.188
   secretRef:

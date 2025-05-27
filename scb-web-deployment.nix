@@ -2,7 +2,7 @@ let
   scbIp = "13.51.6.188";
   node = {
     ip = "145.239.135.194";
-    name = "nixos";
+    name = "localcluster";
   };
 
   ipmanName = "scb";
