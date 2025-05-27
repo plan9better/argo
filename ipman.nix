@@ -3,9 +3,8 @@
     chart = lib.helm.downloadHelmChart {
       repo = "https://dialohq.github.io/ipman";
       chart = "ipman";
-      version = "0.0.7";
-      chartHash = "sha256-vUdhWq86YoouJyYYsYpw5vbPvm7ALzCYV2uT/5l22l0=";
+      version = "0.0.7-1";
+      chartHash = "sha256-C+g4pvqfsmj/tyQHW1fagmlWo92Ty2KUTkJIVKU0Jh8=";
     };
-    values.restctl.image = "plan9better/restctl:0.0.7-1";
   };
 }
