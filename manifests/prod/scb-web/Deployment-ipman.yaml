@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: ipman
     app.kubernetes.io/version: 1.16.0
     control-plane: controller-manager
-    helm.sh/chart: ipman-0.0.7-1
+    helm.sh/chart: ipman-0.0.7-2
   name: ipman
   namespace: ipman-system
 spec:
@@ -25,7 +25,7 @@ spec:
         app.kubernetes.io/name: ipman
         app.kubernetes.io/version: 1.16.0
         control-plane: controller-manager
-        helm.sh/chart: ipman-0.0.7-1
+        helm.sh/chart: ipman-0.0.7-2
     spec:
       containers:
         - env:
@@ -43,7 +43,7 @@ spec:
               value: /var/run/ipman
             - name: HOST_SOCKETS_PATH
               value: /var/run/ipman
-          image: plan9better/operator:0.0.7
+          image: plan9better/operator:0.0.7-2
           imagePullPolicy: Always
           name: ipman
           securityContext:
