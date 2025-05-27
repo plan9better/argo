@@ -6,5 +6,6 @@
       version = "0.0.7";
       chartHash = "sha256-vUdhWq86YoouJyYYsYpw5vbPvm7ALzCYV2uT/5l22l0=";
     };
+    values.restctl.image = "plan9better/restctl:0.0.7-1";
   };
 }

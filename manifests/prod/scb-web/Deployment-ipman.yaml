@@ -36,7 +36,7 @@ spec:
             - name: VXLANDLORD_IMAGE
               value: plan9better/vxlandlord:0.0.7
             - name: RESTCTL_IMAGE
-              value: plan9better/restctl:0.0.7
+              value: plan9better/restctl:0.0.7-1
             - name: CHARONDAEMON_IMAGE
               value: plan9better/strongswan-charon:0.0.7
             - name: PROXY_SOCKET_PATH
