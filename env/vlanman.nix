@@ -8,6 +8,25 @@
   };
 
   resources = {
+    deployments.switch-ssh.spec = {
+      replicas = 1;
+      selector.matchLabels."app.kubernetes.io/name" = "switch-ssh";
+      template.metadata.labels."app.kubernetes.io/name" = "switch-ssh";
+      template.metadata.annotations = {
+        "vlanman.dialo.ai/network" = "test-vlan2";
+        "vlanman.dialo.ai/pool" = "primary";
+      };
+      template.spec = {
+        containers = [
+          {
+            command = ["bash" "-c" "sleep infinity"];
+            image = "ubuntu:latest";
+            name = "switch-ssh-proxy";
+            securityContext = {capabilities = {add = ["NET_ADMIN" "NET_RAW"];};};
+          }
+        ];
+      };
+    };
     vlanNetworks.test-vlan2.spec = {
       localSubnet = ["10.0.1.0/24"];
       remoteSubnet = ["192.168.100.10/24"];

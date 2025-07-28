@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: switch-ssh
+  namespace: vlanman
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: switch-ssh
+  template:
+    metadata:
+      annotations:
+        vlanman.dialo.ai/network: test-vlan2
+        vlanman.dialo.ai/pool: primary
+      labels:
+        app.kubernetes.io/name: switch-ssh
+    spec:
+      containers:
+        - command:
+            - bash
+            - -c
+            - sleep infinity
+          image: ubuntu:latest
+          name: switch-ssh-proxy
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - NET_RAW
