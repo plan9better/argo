@@ -1,0 +1,35 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  annotations:
+    cert-manager.io/inject-ca-from: vlanman-system/vlanman-webhook-certificate
+  name: vlanman-mutating-webhook
+webhooks:
+  - admissionReviewVersions:
+      - v1
+    clientConfig:
+      service:
+        name: vlanman-webhook-service
+        namespace: vlanman-system
+        path: /mutating
+        port: 443
+    failurePolicy: Fail
+    name: webhook.vlanman.dialo.ai
+    namespaceSelector:
+      matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: NotIn
+          values:
+            - vlanman-system
+    objectSelector: {}
+    rules:
+      - apiGroups:
+          - ""
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+        resources:
+          - pods
+    sideEffects: NoneOnDryRun
+    timeoutSeconds: 30

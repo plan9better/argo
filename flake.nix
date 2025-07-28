@@ -17,13 +17,13 @@
       in {
         nixidyEnvs = nixidy.lib.mkEnvs {
           inherit pkgs;
-
           envs = {
             dev.modules = [./env/dev.nix];
           };
         };
 
         packages = {
+          generators = import ./k8s/generators.nix {inherit nixidy system;};
           nixidy = nixidy.packages.${system}.default;
         };
         devShells.default = pkgs.mkShell {

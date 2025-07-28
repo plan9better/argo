@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    meta.helm.sh/release-name: vlanman
+    meta.helm.sh/release-namespace: default
+  name: allow-ingress-default-netpol
+  namespace: default
+spec:
+  ingress:
+    - {}
+  podSelector: {}
+  policyTypes:
+    - Ingress

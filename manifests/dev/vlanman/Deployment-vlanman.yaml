@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: vlanman
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: vlanman
+    app.kubernetes.io/version: 1.16.0
+    control-plane: controller-manager
+    helm.sh/chart: vlanman-0.1.1
+  name: vlanman
+  namespace: vlanman-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: vlanman
+      app.kubernetes.io/name: vlanman
+      control-plane: controller-manager
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: vlanman
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: vlanman
+        app.kubernetes.io/version: 1.16.0
+        control-plane: controller-manager
+        helm.sh/chart: vlanman-0.1.1
+    spec:
+      containers:
+        - env:
+            - name: NAMESPACE_NAME
+              value: vlanman-system
+            - name: POD_WAIT_TIMEOUT
+              value: "60"
+            - name: MONITORING_ENABLED
+              value: "true"
+            - name: MONITORING_SCRAPE_INTERVAL
+              value: 5s
+            - name: MONITORING_RELEASE_NAME
+              value: kps
+            - name: MANAGER_POD_IMAGE
+              value: plan9better/vlan-manager:0.1.1
+            - name: MANAGER_PULL_POLICY
+              value: IfNotPresent
+            - name: INTERFACE_POD_IMAGE
+              value: plan9better/vlan-interface:0.1.1
+            - name: INTERFACE_PULL_POLICY
+              value: IfNotPresent
+            - name: WORKER_IMAGE
+              value: plan9better/vlan-worker:0.1.1
+            - name: WORKER_PULL_POLICY
+              value: IfNotPresent
+            - name: JOB_TTL
+              value: "300"
+            - name: SERVICE_ACCOUNT_NAME
+              value: vlanman-service-account
+          image: plan9better/vlanman:0.1.1
+          imagePullPolicy: IfNotPresent
+          name: vlanman
+          volumeMounts:
+            - mountPath: /etc/webhook/certs
+              name: webhook-certs
+              readOnly: true
+      hostPID: true
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: vlanman-service-account
+      volumes:
+        - name: webhook-certs
+          secret:
+            secretName: vlanman-webhook-cert-secret

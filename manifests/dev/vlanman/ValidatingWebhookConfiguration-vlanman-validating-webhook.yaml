@@ -1,0 +1,38 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    cert-manager.io/inject-ca-from: vlanman-system/vlanman-webhook-certificate
+  name: vlanman-validating-webhook
+webhooks:
+  - admissionReviewVersions:
+      - v1
+    clientConfig:
+      service:
+        name: vlanman-webhook-service
+        namespace: vlanman-system
+        path: /validating
+        port: 443
+    name: webhook.vlanman.dialo.ai
+    objectSelector:
+      matchExpressions:
+        - key: app.kubernetes.io/name
+          operator: NotIn
+          values:
+            - vlanman
+        - key: control-plane
+          operator: NotIn
+          values:
+            - controller-manager
+    rules:
+      - apiGroups:
+          - vlanman.dialo.ai
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+          - DELETE
+          - UPDATE
+        resources:
+          - vlannetworks
+    sideEffects: None

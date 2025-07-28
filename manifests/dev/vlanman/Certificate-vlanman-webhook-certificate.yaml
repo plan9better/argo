@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vlanman-webhook-certificate
+  namespace: vlanman-system
+spec:
+  commonName: vlanman-webhook-service.vlanman-system.svc
+  dnsNames:
+    - vlanman-webhook-service.vlanman-system.svc
+    - vlanman-webhook-service.vlanman-system.svc.cluster.local
+  isCA: true
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: selfsigned-issuer
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  secretName: vlanman-webhook-cert-secret

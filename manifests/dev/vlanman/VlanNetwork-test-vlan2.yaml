@@ -1,0 +1,15 @@
+apiVersion: vlanman.dialo.ai/v1
+kind: VlanNetwork
+metadata:
+  name: test-vlan2
+spec:
+  localSubnet:
+    - 10.0.1.0/24
+  pools:
+    - addresses:
+        - 10.0.1.100/24
+      description: dupa
+      name: primary
+  remoteSubnet:
+    - 192.168.100.10/24
+  vlanId: 2
