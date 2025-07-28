@@ -22,7 +22,7 @@
             command = ["bash" "-c" "sleep infinity"];
             image = "ubuntu:latest";
             name = "switch-ssh-proxy";
-            securityContext = {capabilities = {add = ["NET_ADMIN" "NET_RAW"];};};
+            securityContext = {capabilities = {add = ["NET_RAW"];};};
           }
         ];
       };
