@@ -19,7 +19,7 @@
       template.spec = {
         containers = [
           {
-            command = ["bash" "-c" "sleep infinity"];
+            command = ["bash" "-c" "apt update -y && apt install -y socat && socat TCP4-LISTEN:80,fork,reuseaddr TCP4:127.0.0.1:90"];
             image = "ubuntu:latest";
             name = "switch-ssh-proxy";
             securityContext = {capabilities = {add = ["NET_RAW"];};};
