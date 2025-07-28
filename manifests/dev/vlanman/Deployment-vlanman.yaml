@@ -40,23 +40,23 @@ spec:
             - name: MONITORING_RELEASE_NAME
               value: kps
             - name: MANAGER_POD_IMAGE
-              value: plan9better/vlan-manager:0.1.1
+              value: 192.168.10.201:5000/vlan-manager:0.1.1
             - name: MANAGER_PULL_POLICY
-              value: IfNotPresent
+              value: Always
             - name: INTERFACE_POD_IMAGE
-              value: plan9better/vlan-interface:0.1.1
+              value: 192.168.10.201:5000/vlan-interface:0.1.1
             - name: INTERFACE_PULL_POLICY
-              value: IfNotPresent
+              value: Always
             - name: WORKER_IMAGE
-              value: plan9better/vlan-worker:0.1.1
+              value: 192.168.10.201:5000/vlan-worker:0.1.1
             - name: WORKER_PULL_POLICY
-              value: IfNotPresent
+              value: Always
             - name: JOB_TTL
               value: "300"
             - name: SERVICE_ACCOUNT_NAME
               value: vlanman-service-account
-          image: plan9better/vlanman:0.1.1
-          imagePullPolicy: IfNotPresent
+          image: 192.168.10.201:5000/vlanman:0.1.1
+          imagePullPolicy: Always
           name: vlanman
           volumeMounts:
             - mountPath: /etc/webhook/certs
