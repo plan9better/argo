@@ -35,10 +35,6 @@
           nodeName = "k3s-1";
           interfaceName = "d0";
         }
-        {
-          nodeName = "k3s-2";
-          interfaceName = "enp0s1";
-        }
       ];
       vlanId = 2;
       pools = [
