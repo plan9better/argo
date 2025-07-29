@@ -4,7 +4,7 @@
   nixidy.target.rootPath = "./manifests/dev";
 
   nixidy.applicationImports = [
-    ../k8s/crds/vlanman.nix
+    ../k8s/crds/vlanman.0.1.2.nix
   ];
   applications.vlanman = {
     namespace = "vlanman";

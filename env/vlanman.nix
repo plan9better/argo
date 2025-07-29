@@ -1,6 +1,6 @@
 {lib, ...}: {
   helm.releases.vlanman = {
-    chart = ../vlanman-0.1.1.tgz;
+    chart = ../vlanman-0.1.2.tgz;
     values.global.monitoring = {
       enabled = true;
       release = "kps";
@@ -30,6 +30,16 @@
     vlanNetworks.test-vlan2.spec = {
       localSubnet = ["10.0.1.0/24"];
       remoteSubnet = ["192.168.100.10/24"];
+      mappings = [
+        {
+          nodeName = "k3s-1";
+          interfaceName = "d0";
+        }
+        {
+          nodeName = "k3s-2";
+          interfaceName = "enp0s1";
+        }
+      ];
       vlanId = 2;
       pools = [
         {

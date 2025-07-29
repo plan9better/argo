@@ -5,6 +5,11 @@ metadata:
 spec:
   localSubnet:
     - 10.0.1.0/24
+  mappings:
+    - interfaceName: d0
+      nodeName: k3s-1
+    - interfaceName: enp0s1
+      nodeName: k3s-2
   pools:
     - addresses:
         - 10.0.1.100/24
