@@ -11,10 +11,19 @@ webhooks:
       service:
         name: vlanman-webhook-service
         namespace: vlanman-system
-        path: /validate-vlanman-dialo-ai-v1-vlannetwork
+        path: /validating
         port: 443
-    failurePolicy: Fail
     name: webhook.vlanman.dialo.ai
+    objectSelector:
+      matchExpressions:
+        - key: app.kubernetes.io/name
+          operator: NotIn
+          values:
+            - vlanman
+        - key: control-plane
+          operator: NotIn
+          values:
+            - controller-manager
     rules:
       - apiGroups:
           - vlanman.dialo.ai
@@ -22,8 +31,8 @@ webhooks:
           - v1
         operations:
           - CREATE
-          - UPDATE
           - DELETE
+          - UPDATE
         resources:
           - vlannetworks
     sideEffects: None

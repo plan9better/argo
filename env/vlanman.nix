@@ -1,12 +1,12 @@
 {lib, ...}: {
   helm.releases.vlanman = {
-    chart = ../vlanman-0.1.4.tgz;
-    # chart = lib.helm.downloadHelmChart {
-    #   repo = "https://dialohq.github.io/vlanman";
-    #   chart = "vlanman";
-    #   version = "0.1.3";
-    #   chartHash = "sha256-C3l4hfzX6G4JaU0bcdXHkb3fqDyySP9VRKEzYJx4EWE=";
-    # };
+    # chart = ../vlanman-0.1.4.tgz;
+    chart = lib.helm.downloadHelmChart {
+      repo = "https://dialohq.github.io/vlanman";
+      chart = "vlanman";
+      version = "0.1.3";
+      chartHash = "sha256-C3l4hfzX6G4JaU0bcdXHkb3fqDyySP9VRKEzYJx4EWE=";
+    };
     values.global.monitoring = {
       enabled = true;
       release = "kps";
