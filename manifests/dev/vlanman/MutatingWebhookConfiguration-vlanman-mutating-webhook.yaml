@@ -11,7 +11,7 @@ webhooks:
       service:
         name: vlanman-webhook-service
         namespace: vlanman-system
-        path: /mutating
+        path: /mutate--v1-pod
         port: 443
     failurePolicy: Fail
     name: webhook.vlanman.dialo.ai
@@ -21,7 +21,6 @@ webhooks:
           operator: NotIn
           values:
             - vlanman-system
-    objectSelector: {}
     rules:
       - apiGroups:
           - ""
@@ -32,4 +31,3 @@ webhooks:
         resources:
           - pods
     sideEffects: NoneOnDryRun
-    timeoutSeconds: 30
