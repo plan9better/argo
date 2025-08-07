@@ -52,12 +52,6 @@
       };
     };
     vlanNetworks.test-vlan2.spec = {
-      mappings = [
-        {
-          nodeName = "k3s-1";
-          interfaceName = "d0";
-        }
-      ];
       vlanId = 2;
       pools = [
         {

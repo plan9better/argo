@@ -3,9 +3,6 @@ kind: VlanNetwork
 metadata:
   name: test-vlan2
 spec:
-  mappings:
-    - interfaceName: d0
-      nodeName: k3s-1
   pools:
     - addresses:
         - 10.1.7.3/24
