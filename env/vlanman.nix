@@ -59,17 +59,6 @@
         }
       ];
       vlanId = 2;
-      gateways = [
-        {
-          address = "10.1.6.1/24";
-          routes = [
-            {
-              dest = "10.1.7.0/24";
-              src = "none";
-            }
-          ];
-        }
-      ];
       pools = [
         {
           name = "primary";
@@ -78,18 +67,7 @@
             "10.1.7.3/24"
             "10.1.7.8/24"
           ];
-          routes = [
-            {
-              dest = "10.1.5.3/32";
-              src = "self";
-              scopeLink = true;
-            }
-            {
-              dest = "10.1.8.0/24";
-              via = "10.1.5.3";
-              src = "none";
-            }
-          ];
+          routes = [];
         }
       ];
     };

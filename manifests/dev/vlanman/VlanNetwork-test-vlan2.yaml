@@ -3,11 +3,6 @@ kind: VlanNetwork
 metadata:
   name: test-vlan2
 spec:
-  gateways:
-    - address: 10.1.6.1/24
-      routes:
-        - dest: 10.1.7.0/24
-          src: none
   mappings:
     - interfaceName: d0
       nodeName: k3s-1
@@ -17,11 +12,5 @@ spec:
         - 10.1.7.8/24
       description: dupa
       name: primary
-      routes:
-        - dest: 10.1.5.3/32
-          scopeLink: true
-          src: self
-        - dest: 10.1.8.0/24
-          src: none
-          via: 10.1.5.3
+      routes: []
   vlanId: 2
