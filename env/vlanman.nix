@@ -7,9 +7,27 @@
       version = "v0.1.5";
       chartHash = "sha256-geB7pXkjATWP2ZvCC8TXzS9DfS83q/eqMZYuXNX7jbk=";
     };
-    values.global.monitoring = {
-      enabled = true;
-      release = "kps";
+    values = {
+      global.monitoring = {
+        enabled = true;
+        release = "kps";
+      };
+      controller = {
+        image = "plan9better/vlanman:dev";
+        pullPolicy = "Always";
+      };
+      manager = {
+        image = "plan9better/vlan-manager:dev";
+        pullPolicy = "Always";
+      };
+      worker = {
+        image = "plan9better/vlan-worker:dev";
+        pullPolicy = "Always";
+      };
+      interface = {
+        image = "plan9better/vlan-interface:dev";
+        pullPolicy = "Always";
+      };
     };
   };
 
