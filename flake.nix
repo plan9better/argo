@@ -23,7 +23,7 @@
         };
 
         packages = {
-          generators = import ./k8s/generators.nix {inherit nixidy system;};
+          generators = import ./k8s/generators.nix {inherit nixidy system pkgs;};
           nixidy = nixidy.packages.${system}.default;
         };
         devShells.default = pkgs.mkShell {

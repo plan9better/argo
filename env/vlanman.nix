@@ -4,8 +4,8 @@
     chart = lib.helm.downloadHelmChart {
       repo = "https://dialohq.github.io/vlanman";
       chart = "vlanman";
-      version = "0.1.3";
-      chartHash = "sha256-C3l4hfzX6G4JaU0bcdXHkb3fqDyySP9VRKEzYJx4EWE=";
+      version = "v0.1.5";
+      chartHash = "sha256-geB7pXkjATWP2ZvCC8TXzS9DfS83q/eqMZYuXNX7jbk=";
     };
     values.global.monitoring = {
       enabled = true;
@@ -34,8 +34,6 @@
       };
     };
     vlanNetworks.test-vlan2.spec = {
-      localSubnet = ["10.0.1.0/24"];
-      remoteSubnet = ["192.168.100.10/24"];
       mappings = [
         {
           nodeName = "k3s-1";
@@ -43,12 +41,36 @@
         }
       ];
       vlanId = 2;
+      gateways = [
+        {
+          address = "10.1.6.1/24";
+          routes = [
+            {
+              dest = "10.1.7.0/24";
+              src = "none";
+            }
+          ];
+        }
+      ];
       pools = [
         {
           name = "primary";
           description = "dupa";
           addresses = [
-            "10.0.1.100/24"
+            "10.1.7.3/24"
+            "10.1.7.8/24"
+          ];
+          routes = [
+            {
+              dest = "10.1.5.3/32";
+              src = "self";
+              scopeLink = true;
+            }
+            {
+              dest = "10.1.8./24";
+              via = "10.1.5.3";
+              src = "none";
+            }
           ];
         }
       ];

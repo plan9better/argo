@@ -3,16 +3,25 @@ kind: VlanNetwork
 metadata:
   name: test-vlan2
 spec:
-  localSubnet:
-    - 10.0.1.0/24
+  gateways:
+    - address: 10.1.6.1/24
+      routes:
+        - dest: 10.1.7.0/24
+          src: none
   mappings:
     - interfaceName: d0
       nodeName: k3s-1
   pools:
     - addresses:
-        - 10.0.1.100/24
+        - 10.1.7.3/24
+        - 10.1.7.8/24
       description: dupa
       name: primary
-  remoteSubnet:
-    - 192.168.100.10/24
+      routes:
+        - dest: 10.1.5.3/32
+          scopeLink: true
+          src: self
+        - dest: 10.1.8./24
+          src: none
+          via: 10.1.5.3
   vlanId: 2
