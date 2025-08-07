@@ -67,7 +67,7 @@
               scopeLink = true;
             }
             {
-              dest = "10.1.8./24";
+              dest = "10.1.8.0/24";
               via = "10.1.5.3";
               src = "none";
             }

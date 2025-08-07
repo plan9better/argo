@@ -21,7 +21,7 @@ spec:
         - dest: 10.1.5.3/32
           scopeLink: true
           src: self
-        - dest: 10.1.8./24
+        - dest: 10.1.8.0/24
           src: none
           via: 10.1.5.3
   vlanId: 2
