@@ -13,19 +13,19 @@
         release = "kps";
       };
       controller = {
-        image = "plan9better/vlanman:dev";
+        image = "192.168.10.201:5000/vlanman:0.1.5";
         pullPolicy = "Always";
       };
       manager = {
-        image = "plan9better/vlan-manager:dev";
+        image = "192.168.10.201:5000/vlan-manager:0.1.5";
         pullPolicy = "Always";
       };
       worker = {
-        image = "plan9better/vlan-worker:dev";
+        image = "192.168.10.201:5000/vlan-worker:0.1.5";
         pullPolicy = "Always";
       };
       interface = {
-        image = "plan9better/vlan-interface:dev";
+        image = "192.168.10.201:5000/vlan-interface:0.1.5";
         pullPolicy = "Always";
       };
     };
