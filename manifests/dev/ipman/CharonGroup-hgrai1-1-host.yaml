@@ -1,0 +1,8 @@
+apiVersion: ipman.dialo.ai/v1
+kind: CharonGroup
+metadata:
+  name: hgrai1-1-host
+  namespace: ipman
+spec:
+  hostNetwork: true
+  nodeName: hgrai1-1

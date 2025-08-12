@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: scb-sip
+  namespace: ipman
+spec:
+  ports:
+    - name: grpc
+      port: 8675
+      protocol: TCP
+      targetPort: 8675
+  selector:
+    app.kubernetes.io/name: scb-sip

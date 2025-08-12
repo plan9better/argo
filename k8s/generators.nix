@@ -3,7 +3,23 @@
   system,
   pkgs,
   ...
-}: {
+}: let
+  mk = nixidy.packages.${system}.generators.fromCRD;
+in {
+  ipman = mk {
+    name = "ipman";
+    src = pkgs.fetchFromGitHub {
+      owner = "dialohq";
+      repo = "ipman";
+      rev = "master";
+      hash = "sha256-bUoxA6bKNwqUzQfAjzf0Ljc6OjzyuLVtv3KScVXayfM=";
+    };
+    crds = [
+      "helm/templates/ipman-crd.yaml"
+      "helm/templates/charon-group-crd.yaml"
+    ];
+  };
+
   vlanman = nixidy.packages.${system}.generators.fromCRD {
     name = "vlanman";
     src = pkgs.fetchurl {

@@ -1,0 +1,44 @@
+apiVersion: ipman.dialo.ai/v1
+kind: IPSecConnection
+metadata:
+  name: mbank-primary
+spec:
+  children:
+    primary:
+      extra:
+        close_action: none
+        dpd_action: restart
+        esp_proposals: aes256gcm16-aes256gcm12-aes256gcm8-modp2048
+        start_action: start
+      if_id: 106
+      ip_pools:
+        primary:
+          - 192.168.104.220/32
+          - 192.168.104.221/32
+      local_ips:
+        - 192.168.104.220/32
+        - 192.168.104.221/32
+      name: primary
+      remote_ips:
+        - 192.168.251.88/32
+        - 192.168.251.89/32
+        - 192.168.251.94/32
+        - 192.168.251.95/32
+      vxlan_ip: 192.168.104.218/32
+      xfrm_ip: 192.168.104.219/32
+  extra:
+    proposals: aes256-sha384-modp2048
+    rekey_time: "86400"
+    version: "2"
+  groupRef:
+    name: astor-0-host
+    namespace: external-connections
+  localAddr: 57.128.210.45
+  localId: 57.128.210.45
+  name: mbank-primary
+  remoteAddr: 192.168.10.205
+  remoteId: 192.168.10.205
+  secretRef:
+    key: mbank
+    name: ipsec-psks
+    namespace: external-connections

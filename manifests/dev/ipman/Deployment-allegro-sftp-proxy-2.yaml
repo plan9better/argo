@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: allegro-sftp-proxy-2
+  namespace: ipman
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: allegro-sftp-proxy-2
+      dialo.ai/proxy-target: allegro
+  template:
+    metadata:
+      annotations:
+        ipman.dialo.ai/childName: sftp
+        ipman.dialo.ai/ipmanName: allegro-2
+        ipman.dialo.ai/poolName: primary
+      labels:
+        app.kubernetes.io/name: allegro-sftp-proxy-2
+        dialo.ai/proxy-target: allegro
+    spec:
+      containers:
+        - image: nginx:1.29
+          livenessProbe:
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 2222
+            timeoutSeconds: 1
+          name: production
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: nginx-config
+              subPath: nginx.conf
+      volumes:
+        - configMap:
+            name: allegro-sftp-proxy-2
+          name: nginx-config

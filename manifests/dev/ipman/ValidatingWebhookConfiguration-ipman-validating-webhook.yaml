@@ -1,0 +1,38 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    cert-manager.io/inject-ca-from: ipman-system/ipman-webhook-certificate
+  name: ipman-validating-webhook
+webhooks:
+  - admissionReviewVersions:
+      - v1
+    clientConfig:
+      service:
+        name: ipman-webhook-service
+        namespace: ipman-system
+        path: /validating
+        port: 443
+    name: webhook.ipman.dialo.ai
+    objectSelector:
+      matchExpressions:
+        - key: app.kubernetes.io/name
+          operator: NotIn
+          values:
+            - ipman
+        - key: control-plane
+          operator: NotIn
+          values:
+            - controller-manager
+    rules:
+      - apiGroups:
+          - ipman.dialo.ai
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+          - DELETE
+          - UPDATE
+        resources:
+          - ipsecconnections
+    sideEffects: None

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traffic-controller-ultimo
+  namespace: ipman
+spec:
+  replicas: 2
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: traffic-controller-ultimo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        ipman.dialo.ai/childName: sip
+        ipman.dialo.ai/ipmanName: ultimo-backup
+        ipman.dialo.ai/poolName: sip
+      labels:
+        app.kubernetes.io/name: traffic-controller-ultimo
+    spec:
+      containers:
+        - env:
+            - name: EIO_BACKEND
+              value: io-uring
+          image: nginx
+          name: traffic-controller
+          resources:
+            limits:
+              memory: 200M
+          securityContext:
+            capabilities:
+              add:
+                - IPC_LOCK
+          volumeMounts:
+            - mountPath: /recordings
+              name: recordings
+      dnsPolicy: ClusterFirstWithHostNet
+      volumes:
+        - emptyDir: {}
+          name: recordings

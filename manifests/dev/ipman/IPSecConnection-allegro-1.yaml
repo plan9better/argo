@@ -1,0 +1,39 @@
+apiVersion: ipman.dialo.ai/v1
+kind: IPSecConnection
+metadata:
+  name: allegro-1
+spec:
+  children:
+    sftp:
+      extra:
+        close_action: none
+        dpd_action: restart
+        esp_proposals: aes256-sha1-ecp384
+        start_action: start
+      if_id: 108
+      ip_pools:
+        primary:
+          - 169.254.4.184/32
+      local_ips:
+        - 169.254.4.184/32
+      name: sftp
+      remote_ips:
+        - 169.254.4.185/32
+        - 169.254.4.186/32
+      vxlan_ip: 169.254.4.182/32
+      xfrm_ip: 169.254.4.183/32
+  extra:
+    proposals: aes256-sha256-ecp384
+    version: "2"
+  groupRef:
+    name: astor-0-host
+    namespace: external-connections
+  localAddr: 57.128.210.45
+  localId: 57.128.210.45
+  name: allegro-1
+  remoteAddr: 192.168.10.205
+  remoteId: 192.168.10.205
+  secretRef:
+    key: allegro
+    name: ipsec-psks
+    namespace: external-connections

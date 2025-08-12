@@ -5,6 +5,7 @@
 
   nixidy.applicationImports = [
     ../k8s/crds/vlanman.nix
+    ../k8s/crds/ipman.nix
   ];
   applications.vlanman = {
     namespace = "vlanman";
@@ -16,5 +17,16 @@
     };
 
     imports = [((import ./vlanman.nix) {inherit lib;})];
+  };
+  applications.ipman = {
+    namespace = "ipman";
+    resources.namespaces.ipman.metadata.labels = {
+      "pod-security.kubernetes.io/enforce" = "privileged";
+      "pod-security.kubernetes.io/enforce-version" = "latest";
+      "pod-security.kubernetes.io/warn" = "restricted";
+      "pod-security.kubernetes.io/warn-version" = "latest";
+    };
+
+    imports = [((import ./ipman.nix) {inherit lib;})];
   };
 }

@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scb-sip
+  namespace: ipman
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: scb-sip
+  template:
+    metadata:
+      annotations:
+        vlanman.dialo.ai/network: scb-sip-vlan
+        vlanman.dialo.ai/pool: primary
+      labels:
+        app.kubernetes.io/name: scb-sip
+    spec:
+      containers:
+        - command:
+            - /bin/sip-server-scb
+            - --workers
+            - "1"
+            - --bookkeeper
+            - http://scb-bookkeeper-pl-2.robot:50051
+            - --robot
+            - http://robot-scb-in:8765
+            - --host
+            - $(VLAN_IP)
+            - --port
+            - "5060"
+            - --first_rtp_port
+            - "50000"
+            - --last_rtp_port
+            - "51000"
+            - --peer_trunk
+            - sip:scb@10.93.148.23:5060
+            - --verbosity=debug
+            - --grpc_port
+            - "8675"
+            - --recordings
+            - /recordings/rtp
+          env:
+            - name: EIO_BACKEND
+              value: io-uring
+          image: ghcr.io/dialohq/native-apps:sha-43f3d8d
+          imagePullPolicy: IfNotPresent
+          name: traffic-controller
+          securityContext:
+            capabilities:
+              add:
+                - IPC_LOCK
+          volumeMounts:
+            - mountPath: /recordings/wav
+              name: wav
+            - mountPath: /recordings/rtp
+              name: rtp
+        - image: nginx
+          name: recorder
+          volumeMounts:
+            - mountPath: /recordings/wav
+              name: wav
+            - mountPath: /recordings/rtp
+              name: rtp
+      dnsPolicy: ClusterFirst
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - emptyDir: {}
+          name: wav
+        - emptyDir: {}
+          name: rtp
