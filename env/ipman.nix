@@ -250,9 +250,17 @@ in {
       version = "0.1.14";
       chartHash = "sha256-oS20DGiIs8qpW+4mkx6+cLb3Tr7xW75ZpyhcGH5Fdbk=";
     };
+    values = {
+      controller.image = "plan9better/operator:latest-dev-test";
+      restctl.image = "plan9better/restctl:latest-dev-test";
+      xfrminjector.image = "plan9better/xfrminjector:latest-dev-test";
+      vxlandlord.image = "plan9better/vxlandlord:latest-dev-test";
+      xfrminion.image = "plan9better/xfrminion:latest-dev-test";
+      charon.image = "plan9better/charon:latest-dev-test";
+    };
     values.global.monitoring = {
       enabled = true;
-      release = "prometheus-operator";
+      release = "kps";
     };
   };
 

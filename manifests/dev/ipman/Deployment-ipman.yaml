@@ -32,15 +32,15 @@ spec:
             - name: NAMESPACE_NAME
               value: ipman-system
             - name: XFRMINION_IMAGE
-              value: plan9better/xfrminion:0.1.14
+              value: plan9better/xfrminion:latest-dev-test
             - name: VXLANDLORD_IMAGE
-              value: plan9better/vxlandlord:0.1.14
+              value: plan9better/vxlandlord:latest-dev-test
             - name: RESTCTL_IMAGE
-              value: plan9better/restctl:0.1.14
+              value: plan9better/restctl:latest-dev-test
             - name: XFRMINJECTOR_IMAGE
-              value: plan9better/xfrminjector:0.1.14
+              value: plan9better/xfrminjector:latest-dev-test
             - name: CHARONDAEMON_IMAGE
-              value: plan9better/charon:0.1.14
+              value: plan9better/charon:latest-dev-test
             - name: CADDY_IMAGE
               value: caddy:2.10.0-alpine
             - name: PROXY_SOCKET_PATH
@@ -66,8 +66,8 @@ spec:
             - name: MONITORING_SCRAPE_INTERVAL
               value: 10s
             - name: MONITORING_RELEASE_NAME
-              value: prometheus-operator
-          image: plan9better/operator:0.1.14
+              value: kps
+          image: plan9better/operator:latest-dev-test
           imagePullPolicy: IfNotPresent
           name: ipman
           securityContext:
