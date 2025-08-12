@@ -5,4 +5,4 @@ metadata:
   namespace: ipman
 spec:
   hostNetwork: true
-  nodeName: astor-0
+  nodeName: k3s-1

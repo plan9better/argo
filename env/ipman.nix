@@ -441,7 +441,7 @@ in {
 
     charonGroups.astor-0-host.spec = {
       hostNetwork = true;
-      nodeName = astor-0.name;
+      nodeName = "k3s-1";
     };
     ipSecConnections.mbank-primary.spec = let
       remoteIp = "192.168.10.205";
@@ -484,7 +484,7 @@ in {
 
     charonGroups.hgrai1-0-host.spec = {
       hostNetwork = true;
-      nodeName = hgrai1-0.name;
+      nodeName = "k3s-2";
     };
     ipSecConnections.mbank-secondary.spec = let
       remoteIp = "192.168.10.204";
@@ -806,7 +806,7 @@ in {
     };
 
     charonGroups.hgrai1-1-host.spec = {
-      nodeName = hgrai1-1.name;
+      nodeName = "k3s-1";
       hostNetwork = true;
     };
     ipSecConnections.scb.metadata.namespace = namespace;
