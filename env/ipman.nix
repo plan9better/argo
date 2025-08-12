@@ -244,20 +244,7 @@
   scbSipVlanPoolName = "primary";
 in {
   helm.releases.ipman = {
-    chart = lib.helm.downloadHelmChart {
-      repo = "https://dialohq.github.io/ipman";
-      chart = "ipman";
-      version = "0.1.14";
-      chartHash = "sha256-oS20DGiIs8qpW+4mkx6+cLb3Tr7xW75ZpyhcGH5Fdbk=";
-    };
-    values = {
-      controller.image = "plan9better/operator:latest-dev-test";
-      restctl.image = "plan9better/restctl:latest-dev-test";
-      xfrminjector.image = "plan9better/xfrminjector:latest-dev-test";
-      vxlandlord.image = "plan9better/vxlandlord:latest-dev-test";
-      xfrminion.image = "plan9better/xfrminion:latest-dev-test";
-      charon.image = "plan9better/charon:latest-dev-test";
-    };
+    chart = ../ipman-0.1.15.tgz;
     values.global.monitoring = {
       enabled = true;
       release = "kps";

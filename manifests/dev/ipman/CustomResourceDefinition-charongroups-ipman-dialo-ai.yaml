@@ -20,7 +20,6 @@ spec:
             kind:
               type: string
             metadata:
-              properties: {}
               type: object
             spec:
               properties:
@@ -39,7 +38,6 @@ spec:
                 - nodeName
               type: object
             status:
-              properties: {}
               type: object
           type: object
       served: true

@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: ipman
     app.kubernetes.io/version: 1.16.0
     control-plane: controller-manager
-    helm.sh/chart: ipman-0.1.14
+    helm.sh/chart: ipman-0.1.15
   name: ipman
   namespace: ipman-system
 spec:
@@ -25,22 +25,22 @@ spec:
         app.kubernetes.io/name: ipman
         app.kubernetes.io/version: 1.16.0
         control-plane: controller-manager
-        helm.sh/chart: ipman-0.1.14
+        helm.sh/chart: ipman-0.1.15
     spec:
       containers:
         - env:
             - name: NAMESPACE_NAME
               value: ipman-system
             - name: XFRMINION_IMAGE
-              value: plan9better/xfrminion:latest-dev-test
+              value: 192.168.10.201:5000/xfrminion:latest-dev
             - name: VXLANDLORD_IMAGE
-              value: plan9better/vxlandlord:latest-dev-test
+              value: 192.168.10.201:5000/vxlandlord:latest-dev
             - name: RESTCTL_IMAGE
-              value: plan9better/restctl:latest-dev-test
+              value: 192.168.10.201:5000/restctl:latest-dev
             - name: XFRMINJECTOR_IMAGE
-              value: plan9better/xfrminjector:latest-dev-test
+              value: 192.168.10.201:5000/xfrminjector:latest-dev
             - name: CHARONDAEMON_IMAGE
-              value: plan9better/charon:latest-dev-test
+              value: 192.168.10.201:5000/charon:latest-dev
             - name: CADDY_IMAGE
               value: caddy:2.10.0-alpine
             - name: PROXY_SOCKET_PATH
@@ -48,15 +48,15 @@ spec:
             - name: HOST_SOCKETS_PATH
               value: /var/run/ipman
             - name: XFRMINION_PULL_POLICY
-              value: IfNotPresent
+              value: Always
             - name: XFRMINJECTOR_PULL_POLICY
-              value: IfNotPresent
+              value: Always
             - name: XFRMINJECTOR_TTL_SECONDS
               value: "120"
             - name: CHARON_PULL_POLICY
-              value: IfNotPresent
+              value: Always
             - name: RESTCTL_PULL_POLICY
-              value: IfNotPresent
+              value: Always
             - name: PROXY_PULL_POLICY
               value: IfNotPresent
             - name: POD_WAIT_TIMEOUT
@@ -67,8 +67,8 @@ spec:
               value: 10s
             - name: MONITORING_RELEASE_NAME
               value: kps
-          image: plan9better/operator:latest-dev-test
-          imagePullPolicy: IfNotPresent
+          image: 192.168.10.201:5000/operator:latest-dev
+          imagePullPolicy: Always
           name: ipman
           securityContext:
             allowPrivilegeEscalation: false

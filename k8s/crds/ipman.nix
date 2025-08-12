@@ -178,7 +178,7 @@ with lib; let
         };
         "status" = mkOption {
           description = "";
-          type = types.nullOr (submoduleOf "ipman.dialo.ai.v1.CharonGroupStatus");
+          type = types.nullOr types.attrs;
         };
       };
 
@@ -214,11 +214,6 @@ with lib; let
         "charonExtraAnnotations" = mkOverride 1002 null;
         "interfaceName" = mkOverride 1002 null;
       };
-    };
-    "ipman.dialo.ai.v1.CharonGroupStatus" = {
-      options = {};
-
-      config = {};
     };
     "ipman.dialo.ai.v1.IPSecConnection" = {
       options = {

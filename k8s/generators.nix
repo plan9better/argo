@@ -8,15 +8,10 @@
 in {
   ipman = mk {
     name = "ipman";
-    src = pkgs.fetchFromGitHub {
-      owner = "dialohq";
-      repo = "ipman";
-      rev = "master";
-      hash = "sha256-bUoxA6bKNwqUzQfAjzf0Ljc6OjzyuLVtv3KScVXayfM=";
-    };
+    src = ../ipman-0.1.15.tgz;
     crds = [
-      "helm/templates/ipman-crd.yaml"
-      "helm/templates/charon-group-crd.yaml"
+      "templates/ipman-crd.yaml"
+      "templates/charon-group-crd.yaml"
     ];
   };
 
