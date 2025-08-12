@@ -2,7 +2,7 @@ apiVersion: ipman.dialo.ai/v1
 kind: IPSecConnection
 metadata:
   name: ultimo-backup
-  namespace: external-connections
+  namespace: ipman
 spec:
   children:
     api2:
@@ -44,7 +44,7 @@ spec:
     version: "2"
   groupRef:
     name: astor-0-host
-    namespace: external-connections
+    namespace: ipman
   localAddr: 57.128.210.45
   localId: 57.128.210.45
   name: ultimo-backup
@@ -53,4 +53,4 @@ spec:
   secretRef:
     key: ultimoBackup
     name: ipsec-psks
-    namespace: external-connections
+    namespace: ipman

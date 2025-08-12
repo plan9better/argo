@@ -26,7 +26,7 @@ spec:
     version: "2"
   groupRef:
     name: astor-0-host
-    namespace: external-connections
+    namespace: ipman
   localAddr: 57.128.210.45
   localId: 57.128.210.45
   name: best
@@ -35,4 +35,4 @@ spec:
   secretRef:
     key: best
     name: ipsec-psks
-    namespace: external-connections
+    namespace: ipman

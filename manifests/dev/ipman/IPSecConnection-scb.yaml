@@ -2,7 +2,7 @@ apiVersion: ipman.dialo.ai/v1
 kind: IPSecConnection
 metadata:
   name: scb
-  namespace: external-connections
+  namespace: ipman
 spec:
   children:
     scb:
@@ -37,7 +37,7 @@ spec:
     version: "2"
   groupRef:
     name: hgrai1-1-host
-    namespace: external-connections
+    namespace: ipman
   localAddr: 146.59.69.1
   localId: 146.59.69.1
   name: scb
@@ -46,4 +46,4 @@ spec:
   secretRef:
     key: scb
     name: ipsec-psks
-    namespace: external-connections
+    namespace: ipman

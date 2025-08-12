@@ -143,7 +143,7 @@
     ];
   };
 
-  namespace = "external-connections";
+  namespace = "ipman";
 
   scb-ipman-annotations = {
     "ipman.dialo.ai/childName" = childName;
@@ -458,7 +458,7 @@ in {
       };
       groupRef = {
         name = "astor-0-host";
-        namespace = "external-connections";
+        namespace = "ipman";
       };
       extra = {
         version = "2";
@@ -501,7 +501,7 @@ in {
       };
       groupRef = {
         name = "hgrai1-0-host";
-        namespace = "external-connections";
+        namespace = "ipman";
       };
       extra = {
         version = "2";
@@ -553,7 +553,7 @@ in {
       };
       groupRef = {
         name = "astor-0-host";
-        namespace = "external-connections";
+        namespace = "ipman";
       };
       extra = {
         version = "2";
@@ -728,7 +728,7 @@ in {
       };
       groupRef = {
         name = "astor-0-host";
-        namespace = "external-connections";
+        namespace = "ipman";
       };
       extra = {
         proposals = "aes256-sha256-modp1024";
@@ -769,7 +769,7 @@ in {
       };
       groupRef = {
         name = "astor-0-host";
-        namespace = "external-connections";
+        namespace = "ipman";
       };
       extra = {
         proposals = "aes256-sha2_256-modp1536";
@@ -823,7 +823,7 @@ in {
       };
       groupRef = {
         name = "hgrai1-1-host";
-        namespace = "external-connections";
+        namespace = "ipman";
       };
       extra = {
         version = "2";
@@ -948,7 +948,7 @@ in {
             };
             groupRef = {
               name = "astor-0-host";
-              namespace = "external-connections";
+              namespace = "ipman";
             };
             extra = {
               version = "2";
@@ -996,7 +996,7 @@ in {
             };
             groupRef = {
               name = "astor-0-host";
-              namespace = "external-connections";
+              namespace = "ipman";
             };
             extra = {
               version = "2";
