@@ -323,33 +323,9 @@ in {
             containers = [
               {
                 name = "traffic-controller";
-                image = "ghcr.io/dialohq/native-apps:sha-43f3d8d";
                 imagePullPolicy = "IfNotPresent";
                 securityContext.capabilities.add = ["IPC_LOCK"];
-                command = [
-                  "/bin/sip-server-scb"
-                  "--workers"
-                  "1"
-                  "--bookkeeper"
-                  "http://scb-bookkeeper-pl-2.robot:50051"
-                  "--robot"
-                  "http://robot-scb-in:8765"
-                  "--host"
-                  "$(VLAN_IP)"
-                  "--port"
-                  "5060"
-                  "--first_rtp_port"
-                  "50000"
-                  "--last_rtp_port"
-                  "51000"
-                  "--peer_trunk"
-                  "sip:scb@10.93.148.23:5060"
-                  "--verbosity=debug"
-                  "--grpc_port"
-                  "8675"
-                  "--recordings"
-                  "/recordings/rtp"
-                ];
+                image = "nginx";
                 env = [
                   {
                     name = "EIO_BACKEND";
