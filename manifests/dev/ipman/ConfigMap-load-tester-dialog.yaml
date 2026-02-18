@@ -1,7 +1,0 @@
-apiVersion: v1
-data:
-  test_dialog.json: dupa
-kind: ConfigMap
-metadata:
-  name: load-tester-dialog
-  namespace: ipman

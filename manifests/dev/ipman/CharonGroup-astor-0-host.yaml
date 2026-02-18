@@ -1,8 +1,0 @@
-apiVersion: ipman.dialo.ai/v1
-kind: CharonGroup
-metadata:
-  name: astor-0-host
-  namespace: ipman
-spec:
-  hostNetwork: true
-  nodeName: k3s-1

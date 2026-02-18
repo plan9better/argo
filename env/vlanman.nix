@@ -1,31 +1,31 @@
-{lib, ...}: {
+{...}: {
   helm.releases.vlanman = {
-    # chart = ../vlanman-0.1.4.tgz;
-    chart = lib.helm.downloadHelmChart {
-      repo = "https://dialohq.github.io/vlanman";
-      chart = "vlanman";
-      version = "v0.1.5";
-      chartHash = "sha256-geB7pXkjATWP2ZvCC8TXzS9DfS83q/eqMZYuXNX7jbk=";
-    };
+    chart = ../vlanman-0.0.0.tgz;
+    # chart = lib.helm.downloadHelmChart {
+    #   repo = "https://dialohq.github.io/vlanman";
+    #   chart = "vlanman";
+    #   version = "v0.1.5";
+    #   chartHash = "sha256-geB7pXkjATWP2ZvCC8TXzS9DfS83q/eqMZYuXNX7jbk=";
+    # };
     values = {
       global.monitoring = {
         enabled = true;
         release = "kps";
       };
       controller = {
-        image = "192.168.10.201:5000/vlanman:0.1.5";
+        image = "192.168.10.201:5000/vlanman:dev";
         pullPolicy = "Always";
       };
       manager = {
-        image = "192.168.10.201:5000/vlan-manager:0.1.5";
+        image = "192.168.10.201:5000/vlan-manager:dev";
         pullPolicy = "Always";
       };
       worker = {
-        image = "192.168.10.201:5000/vlan-worker:0.1.5";
+        image = "192.168.10.201:5000/vlan-worker:dev";
         pullPolicy = "Always";
       };
       interface = {
-        image = "192.168.10.201:5000/vlan-interface:0.1.5";
+        image = "192.168.10.201:5000/vlan-interface:dev";
         pullPolicy = "Always";
       };
     };
