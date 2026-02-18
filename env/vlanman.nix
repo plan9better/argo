@@ -12,7 +12,7 @@
         enabled = true;
         release = "kps";
       };
-      controller.image = "plan9better/vlanman:0.1.6-2";
+      # controller.image = "plan9better/vlanman:0.1.6-2";
       # controller = {
       #   image = "192.168.10.201:5000/vlanman:dev";
       #   pullPolicy = "Always";
