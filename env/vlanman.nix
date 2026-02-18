@@ -1,6 +1,6 @@
 {lib, ...}: {
   helm.releases.vlanman = {
-    chart = ../vlanman-0.0.0.tgz;
+    chart = ../vlanman-old.tgz;
     # chart = lib.helm.downloadHelmChart {
     #   repo = "https://dialohq.github.io/vlanman";
     #   chart = "vlanman";
