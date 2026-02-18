@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: vlanman
     app.kubernetes.io/version: 1.16.0
     control-plane: controller-manager
-    helm.sh/chart: vlanman-0.0.0
+    helm.sh/chart: vlanman-0.1.6
   name: vlanman
   namespace: vlanman-system
 spec:
@@ -25,7 +25,7 @@ spec:
         app.kubernetes.io/name: vlanman
         app.kubernetes.io/version: 1.16.0
         control-plane: controller-manager
-        helm.sh/chart: vlanman-0.0.0
+        helm.sh/chart: vlanman-0.1.6
     spec:
       containers:
         - env:
@@ -40,24 +40,22 @@ spec:
             - name: MONITORING_RELEASE_NAME
               value: kps
             - name: MANAGER_POD_IMAGE
-              value: 192.168.10.201:5000/vlan-manager:dev
+              value: 192.168.10.201:5000/vlan-manager:old-dev
             - name: MANAGER_PULL_POLICY
               value: Always
             - name: INTERFACE_POD_IMAGE
-              value: 192.168.10.201:5000/vlan-interface:dev
+              value: 192.168.10.201:5000/vlan-interface:old-dev
             - name: INTERFACE_PULL_POLICY
               value: Always
             - name: WORKER_IMAGE
-              value: 192.168.10.201:5000/vlan-worker:dev
+              value: 192.168.10.201:5000/vlan-worker:old-dev
             - name: WORKER_PULL_POLICY
               value: Always
             - name: JOB_TTL
               value: "300"
             - name: SERVICE_ACCOUNT_NAME
               value: vlanman-service-account
-            - name: MANAGER_IP_MONITORING_ENABLED
-              value: "false"
-          image: 192.168.10.201:5000/vlanman:dev
+          image: 192.168.10.201:5000/vlanman:old-dev
           imagePullPolicy: Always
           name: vlanman
           volumeMounts:
