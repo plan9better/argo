@@ -16,7 +16,7 @@ spec:
   scope: Cluster
   versions:
     - additionalPrinterColumns:
-        - jsonPath: .status.state
+        - jsonPath: .status.shortState
           name: State
           type: string
       name: v1
@@ -1040,6 +1040,8 @@ spec:
                     type: object
                   description: PendingIPs contains IP addresses that are pending allocation, grouped by pool and request
                   type: object
+                shortState:
+                  type: string
                 status:
                   additionalProperties:
                     type: string
@@ -1047,6 +1049,7 @@ spec:
               required:
                 - freeIPs
                 - pendingIPs
+                - shortState
                 - status
               type: object
           type: object
